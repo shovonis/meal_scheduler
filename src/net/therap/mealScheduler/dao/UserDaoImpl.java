@@ -19,15 +19,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUser(String userName, String password) {
         String query = "SELECT * FROM user WHERE user_name= ? AND password = ?";
+
         List<User> userList = DatabaseTemplate.queryForObject(new ObjectRowMapper<User>() {
             @Override
             public User mapRowToObject(ResultSet resultSet) throws SQLException {
-                User user = new User();
-                user.setUserName(resultSet.getString("user_name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
-                user.setAdmin(resultSet.getInt("admin"));
-                return user;
+                return setUser(resultSet);
             }
         }, query, userName, password);
 
@@ -39,11 +35,28 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUser() {
-        return null;
+        String query = "SELECT * FROM user";
+        List<User> userList = DatabaseTemplate.queryForObject(new ObjectRowMapper<User>() {
+            @Override
+            public User mapRowToObject(ResultSet resultSet) throws SQLException {
+                return setUser(resultSet);
+            }
+        }, query);
+
+        return userList;
     }
 
     @Override
     public void addUser(User user) {
 
+    }
+
+    private User setUser(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        user.setUserName(resultSet.getString("user_name"));
+        user.setEmail(resultSet.getString("email"));
+        user.setPassword(resultSet.getString("password"));
+        user.setAdmin(resultSet.getInt("admin"));
+        return user;
     }
 }

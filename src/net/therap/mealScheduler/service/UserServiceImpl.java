@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String userName, String password) {
-        return userDao.getUser(userName,password);
+        return userDao.getUser(userName, password);
     }
 
     @Override

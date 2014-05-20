@@ -4,11 +4,11 @@ import net.therap.mealScheduler.domain.User;
 import net.therap.mealScheduler.service.UserService;
 import net.therap.mealScheduler.service.UserServiceImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -21,17 +21,31 @@ import java.io.IOException;
 
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class Login extends javax.servlet.http.HttpServlet {
+    private User user;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user;
+
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
 
-        UserService userService = new UserServiceImpl();
-        user = userService.getUser(userName,password);
+        if (isUserVerified(userName, password)) {
+            setUpSession(req);
+            resp.sendRedirect(req.getContextPath() + "/home");
+        } else {
+            resp.sendRedirect(req.getContextPath());
+        }
+    }
 
-        req.setAttribute("user", user);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("pages/test.jsp");
-        requestDispatcher.forward(req, resp);
+    private boolean isUserVerified(String userName, String password) {
+        UserService userService = new UserServiceImpl();
+        user = userService.getUser(userName, password);
+        return user != null;
+    }
+
+    private void setUpSession(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        session.setAttribute("user", user);
+        session.setAttribute("authenticatedUser", true);
     }
 }

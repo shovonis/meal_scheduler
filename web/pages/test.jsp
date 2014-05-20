@@ -11,6 +11,7 @@
     <title></title>
 </head>
 <body>
-Hello Dunia
+Login Successfull
+User name ${user.userName}
 </body>
 </html>

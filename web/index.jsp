@@ -7,12 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title></title>
-  </head>
-  <body>
-Hello World :D
-
-  <a href="hello">Hello Nothing</a>
-  </body>
+</head>
+<body>
+<form action="login" method="post">
+    Name: <input type="text" name="userName"/><br>
+    Password:<input type="password" name="password"/><br>
+    <input type="submit" value="Login">
+</form>
+</body>
 </html>

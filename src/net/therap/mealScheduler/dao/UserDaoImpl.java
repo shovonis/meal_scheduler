@@ -53,6 +53,7 @@ public class UserDaoImpl implements UserDao {
 
     private User setUser(ResultSet resultSet) throws SQLException {
         User user = new User();
+        user.setUserId(resultSet.getInt("user_id"));
         user.setUserName(resultSet.getString("user_name"));
         user.setEmail(resultSet.getString("email"));
         user.setPassword(resultSet.getString("password"));

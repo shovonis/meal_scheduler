@@ -80,6 +80,8 @@ public class DatabaseTemplate {
                 statement.setDate(i, (Date) parameter);
             } else if (parameter instanceof Blob) {
                 statement.setBlob(i, (Blob) parameter);
+            } else if (parameter instanceof Timestamp) {
+                statement.setTimestamp(i, (Timestamp) parameter);
             }
             i++;
         }

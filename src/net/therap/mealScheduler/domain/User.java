@@ -8,10 +8,19 @@ package net.therap.mealScheduler.domain;
  * To change this template use File | Settings | File Templates.
  */
 public class User {
+    private Integer userId;
     private String userName;
     private String email;
     private String password;
     private int isAdmin;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;

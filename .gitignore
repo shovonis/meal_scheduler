@@ -4,7 +4,8 @@
 *.iml
 target
 build
+lib
 out
 .idea
-*.lib
-lib
+
+

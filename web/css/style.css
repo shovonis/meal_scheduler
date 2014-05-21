@@ -1,8 +1,5 @@
 /* Basic Grey */
 
-h1{
-    color: red;
-}
 .basic-grey {
     width: 400px;
     margin-right: auto;
@@ -69,6 +66,21 @@ h1{
     padding: 10px 25px 10px 25px;
     color: #FFF;
 }
+
+.basic-grey .link {
+    background: #E48F8F;
+    border: none;
+    padding: 7px 21px 6px 24px;
+    color: #FFF;
+    margin-left: 281px;
+    text-decoration: none;
+    font: normal 12px/12px Georgia, "Times New Roman", Times, serif;
+}
 .basic-grey .button:hover {
     background: #CF7A7A
+}
+.basic-grey .link:hover {
+    text-decoration: none;
+    background: #CF7A7A
+
 }

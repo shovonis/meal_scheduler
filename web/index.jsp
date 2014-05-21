@@ -3,8 +3,7 @@
 
 <html>
 <head>
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="css/style.css" />" media="all">
+    <title>Login</title>
 </head>
 <body>
 <form action="login" method="post" class="basic-grey">

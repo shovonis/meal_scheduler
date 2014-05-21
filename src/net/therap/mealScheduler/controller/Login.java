@@ -29,7 +29,7 @@ public class Login extends javax.servlet.http.HttpServlet {
         String password = req.getParameter("password");
 
         if (isUserVerified(userName, password)) {
-            setUpSession(req);
+//            setUpSession(req);
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             resp.sendRedirect(req.getContextPath());
@@ -37,14 +37,17 @@ public class Login extends javax.servlet.http.HttpServlet {
     }
 
     private boolean isUserVerified(String userName, String password) {
-        UserService userService = new UserServiceImpl();
-        user = userService.getUser(userName, password);
-        return user != null;
+//        UserService userService = new UserServiceImpl();
+//        user = userService.getUser(userName, password);
+//        return user != null;
+        return true;
     }
 
     private void setUpSession(HttpServletRequest req) {
         HttpSession session = req.getSession(false);
         session.setAttribute("user", user);
         session.setAttribute("authenticatedUser", true);
+        session.setAttribute("isAdmin", user.getAdmin());
+
     }
 }

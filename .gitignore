@@ -6,3 +6,5 @@ target
 build
 out
 .idea
+*.lib
+lib

@@ -12,7 +12,8 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    private int isAdmin;
+    private int admin;
+    private boolean isAdmin;
 
     public Integer getUserId() {
         return userId;
@@ -47,10 +48,17 @@ public class User {
     }
 
     public int getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(int admin) {
-        isAdmin = admin;
+        this.admin = admin;
+    }
+
+    public boolean isAdmin() {
+        if (admin == 1) {
+            return isAdmin = true;
+        }
+        return isAdmin;
     }
 }

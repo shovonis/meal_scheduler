@@ -2,13 +2,12 @@ package net.therap.mealScheduler.dao;
 
 import net.therap.mealScheduler.domain.Meal;
 import net.therap.mealScheduler.util.DatabaseTemplate;
+import net.therap.mealScheduler.util.DateTimeManager;
 import net.therap.mealScheduler.util.ObjectRowMapper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -28,37 +27,12 @@ public class MealDaoImpl implements MealDao {
         String mealType = meal.getMealType();
         Timestamp mealDate = meal.getMealTimeStamp();
         String description = meal.getDescription();
-        DatabaseTemplate.executeInsertQuery(insertQuery, userId, mealType, mealDate, description);
-    }
-
-    @Override
-    public Meal getTodayMeal(Date today) {
-        return null;
-    }
-
-    @Override
-    public Meal getTodayBreakFast(Date today) {
-        String query = "SELECT * FROM meal WHERE meal_type = ? AND date_time = ?";
-        List<Meal> mealList = DatabaseTemplate.queryForObject(new ObjectRowMapper<Meal>() {
-            @Override
-            public Meal mapRowToObject(ResultSet resultSet) throws SQLException {
-                return setMeal(resultSet);
-            }
-        }, query, MealType.BREAKFAST, today);
-        if (mealList.size() > 0) {
-            return mealList.get(0);
-        }
-        return null;
-    }
-
-    @Override
-    public Meal getTodayLunch(Date today) {
-        return null;
+        DatabaseTemplate.executeUpdate(insertQuery, userId, mealType, mealDate, description);
     }
 
     @Override
     public List<Meal> getAllMealOfWeek() {
-        String query = "SELECT * FROM meal WHERE YEARWEEK(date_time)=YEARWEEK(NOW())";
+        String query = "SELECT * FROM meal WHERE YEARWEEK(date_time)=YEARWEEK(NOW()) ORDER BY date_time DESC LIMIT 5";
         List<Meal> mealList = DatabaseTemplate.queryForObject(new ObjectRowMapper<Meal>() {
             @Override
             public Meal mapRowToObject(ResultSet resultSet) throws SQLException {
@@ -68,18 +42,28 @@ public class MealDaoImpl implements MealDao {
         return mealList;
     }
 
+    @Override
+    public void updateMeal(Meal meal) {
+        String updateQuery = "UPDATE meal SET meal_type = ? , description = ?" +
+                " WHERE meal_id = ?";
+        DatabaseTemplate.executeUpdate(updateQuery, meal.getMealType(),
+                meal.getDescription(), meal.getMealId());
+    }
+
+    @Override
+    public void deleteMeal(Integer mealId) {
+        String deleteQuery = "DELETE FROM meal WHERE meal_id = ?";
+        DatabaseTemplate.executeUpdate(deleteQuery, mealId);
+    }
+
     private Meal setMeal(ResultSet resultSet) throws SQLException {
         Meal meal = new Meal();
         meal.setMealId(resultSet.getInt("meal_id"));
         meal.setUserId(resultSet.getInt("user_id"));
         meal.setMealType(resultSet.getString("meal_type"));
         meal.setMealTimeStamp(resultSet.getTimestamp("date_time"));
-        meal.setMealServedDay(getDayOfWeek(meal.getMealTimeStamp()));
+        meal.setMealServedDay(DateTimeManager.getDayOfWeek(meal.getMealTimeStamp()));
         meal.setDescription(resultSet.getString("description"));
         return meal;
-    }
-
-    private String getDayOfWeek(Timestamp timestamp) {
-        return new SimpleDateFormat("EEEE").format(timestamp.getTime());
     }
 }

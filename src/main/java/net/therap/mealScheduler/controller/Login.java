@@ -3,6 +3,8 @@ package net.therap.mealScheduler.controller;
 import net.therap.mealScheduler.domain.User;
 import net.therap.mealScheduler.service.UserService;
 import net.therap.mealScheduler.service.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +23,13 @@ import java.io.IOException;
 
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class Login extends javax.servlet.http.HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(Login.class);
     private User user;
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.sendRedirect(req.getContextPath());
-//    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath());
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +38,7 @@ public class Login extends javax.servlet.http.HttpServlet {
 
         if (isUserVerified(userName, password)) {
             setUpSession(req);
+            log.debug("LOGIN", "Login Ok");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             resp.sendRedirect(req.getContextPath());
@@ -51,6 +55,6 @@ public class Login extends javax.servlet.http.HttpServlet {
         HttpSession session = req.getSession(false);
         session.setAttribute("user", user);
         session.setAttribute("authenticatedUser", true);
-        session.setAttribute("isAdmin", user.getAdmin());
+        session.setAttribute("isAdmin", user.isAdmin());
     }
 }

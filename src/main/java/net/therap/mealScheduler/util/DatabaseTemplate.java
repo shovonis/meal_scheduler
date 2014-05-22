@@ -10,19 +10,6 @@ import java.util.List;
  */
 public class DatabaseTemplate {
 
-    public static void execute(String query) {
-        Connection dbConnection = null;
-        PreparedStatement statement = null;
-        try {
-            statement = getPreparedStatement(dbConnection, query);
-            statement.executeQuery();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            closeConnectionAndStatement(dbConnection, statement);
-        }
-    }
-
     public static <E> List<E> queryForObject(ObjectRowMapper<E> objectRowMapper, String query, Object... parameters) {
         ResultSet resultSet = null;
         Connection dbConnection = null;
@@ -44,7 +31,7 @@ public class DatabaseTemplate {
         return listOfElement;
     }
 
-    public static void executeInsertQuery(String query, Object... parameters) {
+    public static void executeUpdate(String query, Object... parameters) {
         Connection dbConnection = null;
         PreparedStatement statement = null;
         try {

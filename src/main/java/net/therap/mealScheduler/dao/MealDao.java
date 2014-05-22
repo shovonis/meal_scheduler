@@ -2,7 +2,6 @@ package net.therap.mealScheduler.dao;
 
 import net.therap.mealScheduler.domain.Meal;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -15,12 +14,9 @@ import java.util.List;
 public interface MealDao {
     public void addMeal(Meal meal);
 
-    public Meal getTodayMeal(Date today);
-
-    public Meal getTodayBreakFast(Date today);
-
-    public Meal getTodayLunch(Date today);
-
     public List<Meal> getAllMealOfWeek();
 
+    public void updateMeal(Meal meal);
+
+    public void deleteMeal(Integer mealId);
 }

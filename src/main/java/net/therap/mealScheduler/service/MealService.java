@@ -2,7 +2,6 @@ package net.therap.mealScheduler.service;
 
 import net.therap.mealScheduler.domain.Meal;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -17,5 +16,8 @@ public interface MealService {
 
     public List<Meal> getAllMealOfWeek();
 
+    public void updateMeal(Meal meal);
+
+    public void deleteMeal(Integer mealId);
 
 }

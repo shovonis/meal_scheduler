@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <title>Home</title>
@@ -10,16 +9,6 @@
             $("#edit").click(function () {
                 $(".tableForm").prop('disabled', false);
             });
-            $("input[type='datetime']").datepicker({
-                minDate: 0,
-                dateFormat: 'yy-dd-mm',
-                onSelect: function (datetext) {
-                    var d = new Date();
-                    datetext = datetext + " " + d.getHours() + ": " + d.getMinutes() + ": " + d.getSeconds();
-                    $("input[type='datetime']").val(datetext);
-                }
-            });
-
         });
         $(function () {
             $('#date').datepicker({
@@ -35,19 +24,13 @@
 
 
     </script>
+</head>
 <body>
-
 <div class="basic-grey">
-    <p>
-        <c:if test="${requestScope.mealAddedSucess eq true}">
-            Meal Added Successfully.
-        </c:if>
-    </p>
-
     <h1>Welcome to Therap Meal Scheduler
         <span>&nbsp;</span>
         <c:choose>
-            <c:when test="${sessionScope.isAdmin eq 1}">
+            <c:when test="${sessionScope.isAdmin}">
                 <span> Admin:<c:out value="${sessionScope.user.userName}"/></span>
             </c:when>
             <c:otherwise>
@@ -57,42 +40,12 @@
         <span><a href="logout" class="link">Logout</a></span>
         <span>Today is : <c:out value="${requestScope.today}"/></span>
     </h1>
-
     <c:choose>
-        <c:when test="${sessionScope.isAdmin eq 1}">
-            <jsp:include page="admin_form.jsp"/>
+        <c:when test="${sessionScope.isAdmin}">
+            <jsp:include page="meal_form.jsp"/>
         </c:when>
     </c:choose>
-    <table border="1px">
-        <th>Date</th>
-        <th>Day</th>
-        <th>Meal Type</th>
-        <th>Meal Description</th>
-        <c:if test="${sessionScope.isAdmin eq 1}">
-            <th>Edit</th>
-        </c:if>
-        <c:if test="${requestScope.mealList != null}">
-
-            <c:forEach var="meal" items="${requestScope.mealList}">
-                <tr>
-                    <form action="updatemeal" method="get">
-                        <td><input class="tableForm" name="mealTimeStamp" type="datetime"
-                                   value="<c:out value="${meal.mealTimeStamp}"/>"/></td>
-                        <td><c:out value="${meal.mealServedDay}"/></td>
-                        <td><input class="tableForm" name="mealType" value="<c:out value="${meal.mealType}"/>"/></td>
-                        <td><input class="tableForm" name="description" value="<c:out value="${meal.description}"/>"/>
-                        </td>
-                        <c:if test="${sessionScope.isAdmin eq 1}">
-                            <td><img src="<c:url value="/images/edit.jpg"/>" height="20px" width="20px" id="edit"></td>
-                        </c:if>
-                        <input name="mealId" hidden="true" type="text" value="<c:out value="${meal.mealId}"/>"/>
-                        <input type="submit" hidden="true"/>
-                    </form>
-                </tr>
-            </c:forEach>
-
-        </c:if>
-    </table>
+    <jsp:include page="meal_table.jsp"/>
 </div>
 </body>
 </html>

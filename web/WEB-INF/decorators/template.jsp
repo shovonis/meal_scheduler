@@ -7,10 +7,13 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title><decorator:title/></title>
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />" media="all">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery-ui-1.10.4.custom.css" />" media="all">
+
     <script src="<c:url value="/js/jquery-1.10.2.js"/>"></script>
     <script src="<c:url value="/js/jquery-ui-1.10.4.custom.js" />"></script>
+
     <decorator:head/>
 </head>
 <body>

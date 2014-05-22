@@ -1,7 +1,7 @@
 /* Basic Grey */
 
 .basic-grey {
-    width: 600px;
+    width: 700px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 150px;
@@ -45,7 +45,7 @@
     margin-top: 2px;
     outline: 0 none;
     padding: 3px 3px 3px 5px;
-    width: 70%;
+    width: 72%;
     font: normal 12px/12px Georgia, "Times New Roman", Times, serif;
 }
 .basic-grey select {
@@ -59,6 +59,10 @@
 }
 .basic-grey textarea{
     height:100px;
+}
+
+.tableForm{
+    width: 170px;
 }
 .basic-grey .button {
     background: #E48F8F;

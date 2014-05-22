@@ -3,16 +3,15 @@ package net.therap.mealScheduler.controller;
 import net.therap.mealScheduler.domain.Meal;
 import net.therap.mealScheduler.domain.User;
 import net.therap.mealScheduler.service.MealServiceImpl;
+import net.therap.mealScheduler.util.DateTimeManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,19 +24,23 @@ import java.util.Calendar;
 @WebServlet(name = "AddMeal", urlPatterns = "/addmeal")
 public class AddMeal extends javax.servlet.http.HttpServlet {
     private Meal meal;
+    private MealServiceImpl mealService;
+
+    public AddMeal() {
+        mealService = new MealServiceImpl();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setMeal(req);
-        new MealServiceImpl().addMeal(meal);
-        req.setAttribute("mealAddedSuccess", true);
-        resp.sendRedirect(req.getContextPath() + "/home?mealAddedSuccess=" + true);
+        createMealFromRequest(req);
+        mealService.addMeal(meal);
+        resp.sendRedirect(req.getContextPath() + "/home");
     }
 
-    private void setMeal(HttpServletRequest req) {
+    private void createMealFromRequest(HttpServletRequest req) {
         meal = new Meal();
         String time = req.getParameter("time");
-        Timestamp timestamp = getTimeStampFromString(time);
+        Timestamp timestamp = DateTimeManager.getTimeStampFromString(time);
 
         meal.setDescription(req.getParameter("meal"));
         meal.setUserId(getUserId(req));
@@ -45,20 +48,9 @@ public class AddMeal extends javax.servlet.http.HttpServlet {
         meal.setMealTimeStamp(timestamp);
     }
 
-    private Timestamp getTimeStampFromString(String time) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
-        Timestamp timestamp = null;
-        try {
-            java.util.Date parsedDate = simpleDateFormat.parse(time);
-            timestamp = new Timestamp(parsedDate.getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return timestamp;
-    }
-
     private Integer getUserId(HttpServletRequest req) {
-        User user = (User) req.getSession().getAttribute("user");
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
         return user.getUserId();
     }
 }

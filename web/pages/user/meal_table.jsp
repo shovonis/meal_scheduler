@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<table border="1px">
+<h4>Meal List Of The Week: </h4>
+<table cellspacing='0'>
     <th>Date</th>
     <th>Day</th>
     <th>Meal Type</th>

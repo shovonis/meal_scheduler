@@ -11,7 +11,7 @@ import java.util.List;
 public class DatabaseTemplate {
 
     public static <E> List<E> queryForObject(ObjectRowMapper<E> objectRowMapper, String query, Object... parameters) {
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         Connection dbConnection = null;
         PreparedStatement statement = null;
 

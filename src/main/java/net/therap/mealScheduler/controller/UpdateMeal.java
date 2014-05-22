@@ -36,11 +36,10 @@ public class UpdateMeal extends javax.servlet.http.HttpServlet {
     }
 
     private void createMealFromRequest(HttpServletRequest req) {
-        meal = new Meal();
         Integer mealId = Integer.parseInt(req.getParameter("mealId"));
+        meal = new Meal();
         meal.setMealId(mealId);
         meal.setMealType(req.getParameter("mealType"));
         meal.setDescription(req.getParameter("description"));
     }
-
 }

@@ -45,6 +45,7 @@
             <jsp:include page="meal_form.jsp"/>
         </c:when>
     </c:choose>
+    <hr>
     <jsp:include page="meal_table.jsp"/>
 </div>
 </body>

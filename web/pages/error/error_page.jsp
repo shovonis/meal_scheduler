@@ -8,8 +8,7 @@
 <body>
 <h2>The application has generated an error</h2>
 
-<h3>Please notify your help desk.</h3>
-<b>Exception:</b><br>
-${pageContext.exception}
+<h3>Please notify our help desk.</h3>
+
 </body>
 </html>

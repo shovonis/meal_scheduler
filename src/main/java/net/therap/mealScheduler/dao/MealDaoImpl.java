@@ -33,12 +33,14 @@ public class MealDaoImpl implements MealDao {
     @Override
     public List<Meal> getAllMealOfWeek() {
         String query = "SELECT * FROM meal WHERE YEARWEEK(date_time)=YEARWEEK(NOW()) ORDER BY date_time DESC LIMIT 5";
+
         List<Meal> mealList = DatabaseTemplate.queryForObject(new ObjectRowMapper<Meal>() {
             @Override
             public Meal mapRowToObject(ResultSet resultSet) throws SQLException {
                 return setMeal(resultSet);
             }
         }, query);
+
         return mealList;
     }
 
@@ -46,6 +48,7 @@ public class MealDaoImpl implements MealDao {
     public void updateMeal(Meal meal) {
         String updateQuery = "UPDATE meal SET meal_type = ? , description = ?" +
                 " WHERE meal_id = ?";
+
         DatabaseTemplate.executeUpdate(updateQuery, meal.getMealType(),
                 meal.getDescription(), meal.getMealId());
     }

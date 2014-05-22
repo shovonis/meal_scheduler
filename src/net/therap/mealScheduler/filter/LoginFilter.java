@@ -17,7 +17,7 @@ public class LoginFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
         String requestedUri = ((HttpServletRequest) servletRequest).getRequestURI();
 
-        if ((session == null || session.getAttribute("authenticatedUser") == null) && (requestedUri.contains("logout"))) {
+        if ((session == null || session.getAttribute("authenticatedUser") == null) && (requestedUri.contains("home") || requestedUri.contains("logout"))) {
             ((HttpServletResponse) servletResponse).sendRedirect(((HttpServletRequest) servletRequest).getContextPath());
 
         } else if (session != null && session.getAttribute("authenticatedUser") != null && (requestedUri.contains("login"))) {

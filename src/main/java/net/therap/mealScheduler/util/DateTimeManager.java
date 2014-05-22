@@ -6,10 +6,9 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/22/14
  * Time: 11:09 AM
- * To change this template use File | Settings | File Templates.
  */
 public class DateTimeManager {
     public static Timestamp getTimeStampFromString(String time) {

@@ -5,10 +5,9 @@ import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/21/14
  * Time: 10:42 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Meal {
     private Integer mealId;

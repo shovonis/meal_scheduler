@@ -10,10 +10,9 @@ import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/21/14
  * Time: 4:05 PM
- * To change this template use File | Settings | File Templates.
  */
 
 @WebServlet(name = "Logout", urlPatterns = "/logout")

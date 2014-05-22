@@ -8,10 +8,9 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/20/14
  * Time: 12:33 PM
- * To change this template use File | Settings | File Templates.
  */
 public class UserServiceImpl implements UserService {
     private UserDao userDao = null;

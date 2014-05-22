@@ -14,11 +14,11 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/20/14
  * Time: 3:52 PM
- * To change this template use File | Settings | File Templates.
  */
+
 @WebServlet(name = "Home", urlPatterns = "/home")
 public class Home extends javax.servlet.http.HttpServlet {
     @Override

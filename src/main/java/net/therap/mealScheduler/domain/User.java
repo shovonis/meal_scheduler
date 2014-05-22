@@ -2,10 +2,9 @@ package net.therap.mealScheduler.domain;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/20/14
  * Time: 12:00 PM
- * To change this template use File | Settings | File Templates.
  */
 public class User {
     private Integer userId;

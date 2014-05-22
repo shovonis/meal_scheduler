@@ -15,10 +15,9 @@ import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/21/14
  * Time: 10:40 AM
- * To change this template use File | Settings | File Templates.
  */
 
 @WebServlet(name = "AddMeal", urlPatterns = "/addmeal")

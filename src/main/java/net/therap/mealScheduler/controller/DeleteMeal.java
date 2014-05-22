@@ -11,10 +11,9 @@ import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/22/14
  * Time: 11:29 AM
- * To change this template use File | Settings | File Templates.
  */
 
 

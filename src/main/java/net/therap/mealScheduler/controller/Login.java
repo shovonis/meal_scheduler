@@ -15,10 +15,9 @@ import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/20/14
  * Time: 11:58 AM
- * To change this template use File | Settings | File Templates.
  */
 
 @WebServlet(name = "Login", urlPatterns = "/login")
@@ -38,7 +37,7 @@ public class Login extends javax.servlet.http.HttpServlet {
 
         if (isUserVerified(userName, password)) {
             setUpSession(req);
-            log.debug("LOGIN", "Login Ok");
+            log.debug("LOGIN", "USER LOG IN COMPLETED");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             resp.sendRedirect(req.getContextPath());

@@ -6,10 +6,9 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/20/14
  * Time: 12:01 PM
- * To change this template use File | Settings | File Templates.
  */
 public interface UserDao {
     public User getUser(String userName, String password);

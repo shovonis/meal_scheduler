@@ -12,10 +12,9 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: rifatul.islam
+ * @author : rifatul.islam
  * Date: 5/21/14
  * Time: 10:52 AM
- * To change this template use File | Settings | File Templates.
  */
 public class MealDaoImpl implements MealDao {
     @Override

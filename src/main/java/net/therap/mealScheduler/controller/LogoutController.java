@@ -15,8 +15,8 @@ import java.io.IOException;
  * Time: 4:05 PM
  */
 
-@WebServlet(name = "Logout", urlPatterns = "/logout")
-public class Logout extends HttpServlet {
+@WebServlet(name = "LogoutController", urlPatterns = "/logout")
+public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

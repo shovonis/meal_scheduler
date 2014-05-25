@@ -12,7 +12,7 @@
         <th>Remove</th>
     </c:if>
     <c:if test="${requestScope.mealList != null}">
-        <c:forEach var="meal" items="${requestScope.mealList}">
+        <c:forEach var="meal" items="${requestScope.mealList}" varStatus="item">
             <tr>
                 <form action="updatemeal" method="get">
                     <td><c:out value="${meal.mealTimeStamp}"/></td>

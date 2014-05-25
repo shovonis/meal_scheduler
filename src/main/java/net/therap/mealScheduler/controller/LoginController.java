@@ -15,14 +15,15 @@ import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * @author : rifatul.islam
- * Date: 5/20/14
- * Time: 11:58 AM
+ *         Date: 5/20/14
+ *         Time: 11:58 AM
  */
 
-@WebServlet(name = "Login", urlPatterns = "/login")
-public class Login extends javax.servlet.http.HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(Login.class);
+@WebServlet(name = "LoginController", urlPatterns = "/login")
+public class LoginController extends javax.servlet.http.HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     private User user;
 
     @Override
@@ -37,7 +38,7 @@ public class Login extends javax.servlet.http.HttpServlet {
 
         if (isUserVerified(userName, password)) {
             setUpSession(req);
-            log.debug("LOGIN", "USER LOG IN COMPLETED");
+            log.debug("USER LOGIN SUCCEED");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             resp.sendRedirect(req.getContextPath());
@@ -55,5 +56,6 @@ public class Login extends javax.servlet.http.HttpServlet {
         session.setAttribute("user", user);
         session.setAttribute("authenticatedUser", true);
         session.setAttribute("isAdmin", user.isAdmin());
+        log.debug("Session is set");
     }
 }

@@ -1,4 +1,4 @@
-package net.therap.mealScheduler.util;
+package net.therap.mealScheduler.util.db;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

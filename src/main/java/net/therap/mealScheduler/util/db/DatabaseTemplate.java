@@ -1,4 +1,4 @@
-package net.therap.mealScheduler.util;
+package net.therap.mealScheduler.util.db;
 
 import java.sql.*;
 import java.util.ArrayList;

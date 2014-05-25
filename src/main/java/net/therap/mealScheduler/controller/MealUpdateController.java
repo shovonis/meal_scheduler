@@ -21,19 +21,19 @@ import java.io.IOException;
  *         Time: 4:05 PM
  */
 
-@WebServlet(name = "UpdateMeal", urlPatterns = "/updatemeal")
-public class UpdateMeal extends javax.servlet.http.HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(UpdateMeal.class);
+@WebServlet(name = "MealUpdateController", urlPatterns = "/updatemeal")
+public class MealUpdateController extends javax.servlet.http.HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(MealUpdateController.class);
     private Meal meal;
     private MealService mealService;
 
-    public UpdateMeal() {
+    public MealUpdateController() {
         this.mealService = new MealServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.debug("Parameter", req.getParameter("mealId"));
+        log.debug("Parameter :", req.getParameter("mealId"));
         createMealFromRequest(req);
         mealService.updateMeal(meal);
         resp.sendRedirect(req.getContextPath() + "/home");

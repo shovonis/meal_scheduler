@@ -3,7 +3,9 @@ package net.therap.mealScheduler.controller;
 import net.therap.mealScheduler.domain.Meal;
 import net.therap.mealScheduler.domain.User;
 import net.therap.mealScheduler.service.MealServiceImpl;
-import net.therap.mealScheduler.util.DateTimeManager;
+import net.therap.mealScheduler.util.date.DateTimeManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,17 +17,19 @@ import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * @author : rifatul.islam
- * Date: 5/21/14
- * Time: 10:40 AM
+ *         Date: 5/21/14
+ *         Time: 10:40 AM
  */
 
-@WebServlet(name = "AddMeal", urlPatterns = "/addmeal")
-public class AddMeal extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "MealAddController", urlPatterns = "/addmeal")
+public class MealAddController extends javax.servlet.http.HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(MealAddController.class);
     private Meal meal;
     private MealServiceImpl mealService;
 
-    public AddMeal() {
+    public MealAddController() {
         mealService = new MealServiceImpl();
     }
 
@@ -33,6 +37,7 @@ public class AddMeal extends javax.servlet.http.HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         createMealFromRequest(req);
         mealService.addMeal(meal);
+        log.debug("Meal is added");
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 

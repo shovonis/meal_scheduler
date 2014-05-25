@@ -17,8 +17,8 @@ import java.io.IOException;
  */
 
 
-@WebServlet(name = "DeleteMeal", urlPatterns = "/delete")
-public class DeleteMeal extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "MealRemoveController", urlPatterns = "/delete")
+public class MealRemoveController extends javax.servlet.http.HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer mealId = Integer.parseInt(req.getParameter("mealId"));

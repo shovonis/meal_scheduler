@@ -1,9 +1,11 @@
 package net.therap.mealScheduler.dao;
 
 import net.therap.mealScheduler.domain.Meal;
-import net.therap.mealScheduler.util.DatabaseTemplate;
-import net.therap.mealScheduler.util.DateTimeManager;
-import net.therap.mealScheduler.util.ObjectRowMapper;
+import net.therap.mealScheduler.util.date.DateTimeManager;
+import net.therap.mealScheduler.util.db.DatabaseTemplate;
+import net.therap.mealScheduler.util.db.ObjectRowMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,11 +14,14 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * @author : rifatul.islam
- * Date: 5/21/14
- * Time: 10:52 AM
+ *         Date: 5/21/14
+ *         Time: 10:52 AM
  */
 public class MealDaoImpl implements MealDao {
+    private static final Logger log = LoggerFactory.getLogger(MealDao.class);
+
     @Override
     public void addMeal(Meal meal) {
         String insertQuery = "INSERT INTO `mealdb`.`meal` (`meal_id`, `user_id`, `meal_type`, `date_time`, `description`)" +
@@ -27,6 +32,7 @@ public class MealDaoImpl implements MealDao {
         Timestamp mealDate = meal.getMealTimeStamp();
         String description = meal.getDescription();
         DatabaseTemplate.executeUpdate(insertQuery, userId, mealType, mealDate, description);
+        log.debug("Meal inserted");
     }
 
     @Override
@@ -40,6 +46,7 @@ public class MealDaoImpl implements MealDao {
             }
         }, query);
 
+        log.debug("Meal List Returned");
         return mealList;
     }
 
@@ -50,12 +57,15 @@ public class MealDaoImpl implements MealDao {
 
         DatabaseTemplate.executeUpdate(updateQuery, meal.getMealType(),
                 meal.getDescription(), meal.getMealId());
+        log.debug("Meal Updated");
+
     }
 
     @Override
     public void deleteMeal(Integer mealId) {
         String deleteQuery = "DELETE FROM meal WHERE meal_id = ?";
         DatabaseTemplate.executeUpdate(deleteQuery, mealId);
+        log.debug("Meal Deleted");
     }
 
     private Meal setMeal(ResultSet resultSet) throws SQLException {

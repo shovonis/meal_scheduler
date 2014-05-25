@@ -10,9 +10,11 @@
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />" media="all">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery-ui-1.10.4.custom.css" />" media="all">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery.toastmessage.css" />" media="all">
 
     <script src="<c:url value="/js/jquery-1.10.2.js"/>"></script>
     <script src="<c:url value="/js/jquery-ui-1.10.4.custom.js" />"></script>
+    <script src="<c:url value="/js/jquery.toastmessage.js" />"></script>
 
     <decorator:head/>
 </head>

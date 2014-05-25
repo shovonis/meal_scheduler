@@ -1,4 +1,4 @@
-package net.therap.mealScheduler.util;
+package net.therap.mealScheduler.util.date;
 
 import java.sql.Timestamp;
 import java.text.ParseException;

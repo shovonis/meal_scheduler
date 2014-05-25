@@ -19,8 +19,8 @@ import java.util.List;
  * Time: 3:52 PM
  */
 
-@WebServlet(name = "Home", urlPatterns = "/home")
-public class Home extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "HomeController", urlPatterns = "/home")
+public class HomeController extends javax.servlet.http.HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Meal> mealList = getAllMeal();

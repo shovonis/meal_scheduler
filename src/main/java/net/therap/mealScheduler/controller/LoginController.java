@@ -52,7 +52,7 @@ public class LoginController extends javax.servlet.http.HttpServlet {
     }
 
     private void setUpSession(HttpServletRequest req) {
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession();
         session.setAttribute("user", user);
         session.setAttribute("authenticatedUser", true);
         session.setAttribute("isAdmin", user.isAdmin());

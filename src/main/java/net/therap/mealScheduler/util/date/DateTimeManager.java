@@ -6,11 +6,13 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * @author : rifatul.islam
- * Date: 5/22/14
- * Time: 11:09 AM
+ *         Date: 5/22/14
+ *         Time: 11:09 AM
  */
 public class DateTimeManager {
+
     public static Timestamp getTimeStampFromString(String time) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
         Timestamp timestamp = null;

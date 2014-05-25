@@ -32,9 +32,9 @@ public class UserDaoImpl implements UserDao {
         }, query, userName, password);
 
         if (userList.size() != 0) {
+            log.debug("USER returned");
             return userList.get(0);
         }
-        log.debug("USER List ok");
         return null;
     }
 
@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
             }
         }, query);
 
-        log.debug("All user list ok");
+        log.debug("All user list returned");
         return userList;
     }
 

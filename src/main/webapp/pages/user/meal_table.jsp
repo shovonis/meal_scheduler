@@ -14,7 +14,7 @@
     <c:if test="${requestScope.mealList != null}">
         <c:forEach var="meal" items="${requestScope.mealList}" varStatus="item">
             <tr>
-                <form action="updatemeal" method="get">
+                <form action="updatemeal" method="post">
                     <td><c:out value="${meal.mealTimeStamp}"/></td>
                     <td><c:out value="${meal.mealServedDay}"/></td>
                     <td><input class="tableForm" name="mealType" value="<c:out value="${meal.mealType}"/>"/></td>

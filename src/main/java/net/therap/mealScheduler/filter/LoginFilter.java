@@ -15,7 +15,7 @@ public class LoginFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws ServletException, IOException {
-        HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
+        HttpSession session = ((HttpServletRequest) servletRequest).getSession();
         String requestedUri = ((HttpServletRequest) servletRequest).getRequestURI();
 
         if ((session == null || session.getAttribute("authenticatedUser") == null) && (requestedUri.contains("home")

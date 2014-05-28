@@ -38,7 +38,6 @@ public class LoginController extends javax.servlet.http.HttpServlet {
 
         if (isUserVerified(userName, password)) {
             setUpSession(req);
-            log.debug("USER LOGIN SUCCEED");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             resp.sendRedirect(req.getContextPath());

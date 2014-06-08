@@ -1,25 +1,36 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
-defaultTasks 'deploy'
+
+
 
 webAppDirName = 'web/'
+
+
+configurations {
+    ajc
+    aspects
+
+}
+
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.slf4j:slf4j-api:1.7.7"
-    compile "ch.qos.logback:logback-classic:1.1.2"
-    compile "ch.qos.logback:logback-core:1.1.2"
-    compile "org.jfree:jcommon:1.0.17"
+    ajc 'aspectj:aspectjtools:1.5.4'
 
-    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
-    providedCompile 'javax.servlet:jsp-api:2.0'
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'aspectj:aspectjrt:1.5.4'
 
-    runtime 'mysql:mysql-connector-java:5.1.30'
+    runtime 'aspectj:aspectjweaver:1.5.4'
     runtime 'javax.servlet:jstl:1.2'
+    runtime 'mysql:mysql-connector-java:5.1.30'
     runtime 'opensymphony:sitemesh:2.4.2'
 }
 
@@ -27,4 +38,5 @@ task deploy(type: Copy) {
     from 'build/libs/meal_scheduler.war'
     into '/home/rifatul.islam/apache-tomcat-7.0.53/webapps/'
 }
+
 

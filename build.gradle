@@ -1,16 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
-
-
-
 webAppDirName = 'web/'
 
 
 configurations {
     ajc
     aspects
-
+    ajInpath
 }
 
 
@@ -19,16 +16,12 @@ repositories {
 }
 
 dependencies {
-    ajc 'aspectj:aspectjtools:1.5.4'
-
     compile 'javax.servlet:javax.servlet-api:3.0.1'
     compile 'org.slf4j:slf4j-api:1.7.7'
     compile 'org.slf4j:slf4j-simple:1.7.7'
     compile 'ch.qos.logback:logback-core:1.1.2'
     compile 'ch.qos.logback:logback-classic:1.1.2'
-    compile 'aspectj:aspectjrt:1.5.4'
 
-    runtime 'aspectj:aspectjweaver:1.5.4'
     runtime 'javax.servlet:jstl:1.2'
     runtime 'mysql:mysql-connector-java:5.1.30'
     runtime 'opensymphony:sitemesh:2.4.2'
@@ -39,4 +32,22 @@ task deploy(type: Copy) {
     into '/home/rifatul.islam/apache-tomcat-7.0.53/webapps/'
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://maven.eveoh.nl/content/repositories/releases"
+        }
+    }
+    dependencies {
+        classpath "nl.eveoh:gradle-aspectj:1.4"
+    }
+}
 
+repositories {
+    mavenCentral()
+}
+
+project.ext {
+    aspectjVersion = '1.7.4'
+}
+apply plugin: 'aspectj'
